@@ -304,23 +304,23 @@ gameScreen.ClearScreen(0xfff);
 
 //framerate limit to 30
         Uint32 timetaken = time - timePrev;
-        if (game.gamestate == EDITORMODE) {
-            if (timetaken < 24) {
-                volatile Uint32 delay = 24 - timetaken;
-                SDL_Delay(delay);
-                time = SDL_GetTicks();
-            }
-            timePrev = time;
-
-        } else {
-            if (timetaken < game.gameframerate) {
-                volatile Uint32 delay = game.gameframerate - timetaken;
-                SDL_Delay(delay);
-                time = SDL_GetTicks();
-            }
-            timePrev = time;
-
-        }
+//        if (game.gamestate == EDITORMODE) {
+//            if (timetaken < 24) {
+//                volatile Uint32 delay = 24 - timetaken;
+//                SDL_Delay(delay);
+//                time = SDL_GetTicks();
+//            }
+//            timePrev = time;
+//
+//        } else {
+//            if (timetaken < game.gameframerate) {
+//                volatile Uint32 delay = game.gameframerate - timetaken;
+//                SDL_Delay(delay);
+//                time = SDL_GetTicks();
+//            }
+//            timePrev = time;
+//
+//        }
 
 
         key.Poll();

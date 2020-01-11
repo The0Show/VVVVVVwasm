@@ -47,7 +47,6 @@ struct context_t {
         );
 
         SDL_ShowCursor(SDL_DISABLE);
-        emscripten_hide_mouse();
 
         if (argc > 2 && strcmp(argv[1], "-renderer") == 0) {
             SDL_SetHintWithPriority(SDL_HINT_RENDER_DRIVER, argv[2], SDL_HINT_OVERRIDE);
@@ -276,7 +275,7 @@ int main(int argc, char *argv[]) {
     argc_ = argc;
     argv_ = argv;
     emscripten_cancel_main_loop();
-    emscripten_set_main_loop(main_loop, 0, 0);
+    emscripten_set_main_loop(main_loop, -1, 0);
     return 0;
 }
 
@@ -295,7 +294,7 @@ void main_loop() {
         mapclass &map = *context->map;
         entityclass &obj = *context->obj;
 
-        volatile Uint32 time, timePrev = 0;
+        static volatile Uint32 time, timePrev = 0;
 gameScreen.ClearScreen(0xfff);
 
         time = SDL_GetTicks();

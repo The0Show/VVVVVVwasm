@@ -3,7 +3,7 @@ BUILD_DIR=./build
 CC=/mnt/c/projects/emskd_linux/upstream/emscripten/emcc
 CPP=/mnt/c/projects/emskd_linux/upstream/emscripten/em++
 
-CCFLAGS=-g4 -O2 -s ASSERTIONS=1
+CCFLAGS=-g0 -O3
 
 CCFLAGS_PHYSFS=-I./physfs -s EMULATE_FUNCTION_POINTER_CASTS=1 -DPHYSFS_SUPPORTS_DEFAULT=0 -DPHYSFS_SUPPORTS_ZIP=1
 SOURCES_PHYSFS=physfs/physfs.c physfs/physfs_archiver_dir.c physfs/physfs_archiver_unpacked.c physfs/physfs_archiver_zip.c physfs/physfs_byteorder.c physfs/physfs_unicode.c physfs/physfs_platform_posix.c physfs/physfs_platform_unix.c physfs/physfs_platform_windows.c
@@ -23,7 +23,7 @@ SOURCES_VVVVVV=src/BinaryBlob.cpp src/BlockV.cpp src/editor.cpp src/Ent.cpp src/
 OBJECTS_VVVVVV=$(SOURCES_VVVVVV:%=$(BUILD_DIR)/%.bc)
 
 index.html: $(OBJECTS_VVVVVV) $(OBJECTS_PHYSFS) $(OBJECTS_TINYXML) $(OBJECTS_LODEPNG)
-	$(CPP) $(CCFLAGS) $(LLFLAGS_VVVVVV) $(OBJECTS_VVVVVV) $(OBJECTS_PHYSFS) $(OBJECTS_TINYXML) $(OBJECTS_LODEPNG) -o $(BUILD_DIR)/index.html
+	$(CPP) $(CCFLAGS) $(LLFLAGS_VVVVVV) $(OBJECTS_VVVVVV) $(OBJECTS_PHYSFS) $(OBJECTS_TINYXML) $(OBJECTS_LODEPNG) -o $(BUILD_DIR)/index.html --shell-file build/shell_minimal.html
 
 $(OBJECTS_PHYSFS): build/%.bc: %
 	mkdir -p build/physfs/

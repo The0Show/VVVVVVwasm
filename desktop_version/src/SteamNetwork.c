@@ -11,15 +11,17 @@
 
 /* Shared object file name */
 
-#if defined(_WIN32)
-#define NETWORK_LIBRARY "steam_api.dll"
-#elif defined(__APPLE__)
-#define NETWORK_LIBRARY "libsteam_api.dylib"
-#elif defined(__linux__)
-#define NETWORK_LIBRARY "libsteam_api.so"
-#else
-#error NETWORK_LIBRARY: Unrecognized platform!
-#endif
+//#if defined(_WIN32)
+//#define NETWORK_LIBRARY "steam_api.dll"
+//#elif defined(__APPLE__)
+//#define NETWORK_LIBRARY "libsteam_api.dylib"
+//#elif defined(__linux__)
+//#define NETWORK_LIBRARY "libsteam_api.so"
+//#else
+//#error NETWORK_LIBRARY: Unrecognized platform!
+//#endif
+
+#define NETWORK_LIBRARY ""
 
 /* Function Pointer Types */
 
@@ -97,123 +99,131 @@ static void ClearPointers()
 
 int NETWORK_init()
 {
-	intptr_t steamClient;
-	int32_t steamUser, steamPipe;
-
-	libHandle = SDL_LoadObject(NETWORK_LIBRARY);
-	if (!libHandle)
-	{
-		printf("%s not found!\n", NETWORK_LIBRARY);
-		return 0;
-	}
-
-	#define LOAD_FUNC(name) \
-		name = (name##Func) SDL_LoadFunction(libHandle, #name); \
-		if (!name) \
-		{ \
-			printf("%s symbol %s not found!\n", NETWORK_LIBRARY, #name); \
-			ClearPointers(); \
-			return 0; \
-		}
-	LOAD_FUNC(SteamAPI_Init)
-	LOAD_FUNC(SteamAPI_Shutdown)
-	LOAD_FUNC(SteamAPI_RunCallbacks)
-	LOAD_FUNC(SteamInternal_CreateInterface)
-	LOAD_FUNC(SteamAPI_GetHSteamUser)
-	LOAD_FUNC(SteamAPI_GetHSteamPipe)
-	LOAD_FUNC(SteamAPI_ISteamClient_GetISteamUserStats)
-	LOAD_FUNC(SteamAPI_ISteamUserStats_RequestCurrentStats)
-	LOAD_FUNC(SteamAPI_ISteamUserStats_StoreStats)
-	LOAD_FUNC(SteamAPI_ISteamUserStats_GetStat)
-	LOAD_FUNC(SteamAPI_ISteamUserStats_SetStat)
-	LOAD_FUNC(SteamAPI_ISteamUserStats_SetAchievement)
-	#undef LOAD_FUNC
-
-	if (!SteamAPI_Init())
-	{
-		printf("Steamworks not initialized!\n");
-		ClearPointers();
-		return 0;
-	}
-	steamClient = SteamInternal_CreateInterface(VVVVVV_STEAMCLIENT);
-	steamUser = SteamAPI_GetHSteamUser();
-	steamPipe = SteamAPI_GetHSteamPipe();
-	if (!steamClient || !steamUser || !steamPipe)
-	{
-		SteamAPI_Shutdown();
-		printf(VVVVVV_STEAMCLIENT " not created!\n");
-		ClearPointers();
-		return 0;
-	}
-	steamUserStats = SteamAPI_ISteamClient_GetISteamUserStats(
-		steamClient,
-		steamUser,
-		steamPipe,
-		VVVVVV_STEAMUSERSTATS
-	);
-	if (!steamUserStats)
-	{
-		SteamAPI_Shutdown();
-		printf(VVVVVV_STEAMUSERSTATS " not created!\n");
-		ClearPointers();
-		return 0;
-	}
-	SteamAPI_ISteamUserStats_RequestCurrentStats(steamUserStats);
+	printf("Stub NETWORK_init\n");
 	return 1;
+//	intptr_t steamClient;
+//	int32_t steamUser, steamPipe;
+//
+//	libHandle = SDL_LoadObject(NETWORK_LIBRARY);
+//	if (!libHandle)
+//	{
+//		printf("%s not found!\n", NETWORK_LIBRARY);
+//		return 0;
+//	}
+//
+//	#define LOAD_FUNC(name) \
+//		name = (name##Func) SDL_LoadFunction(libHandle, #name); \
+//		if (!name) \
+//		{ \
+//			printf("%s symbol %s not found!\n", NETWORK_LIBRARY, #name); \
+//			ClearPointers(); \
+//			return 0; \
+//		}
+//	LOAD_FUNC(SteamAPI_Init)
+//	LOAD_FUNC(SteamAPI_Shutdown)
+//	LOAD_FUNC(SteamAPI_RunCallbacks)
+//	LOAD_FUNC(SteamInternal_CreateInterface)
+//	LOAD_FUNC(SteamAPI_GetHSteamUser)
+//	LOAD_FUNC(SteamAPI_GetHSteamPipe)
+//	LOAD_FUNC(SteamAPI_ISteamClient_GetISteamUserStats)
+//	LOAD_FUNC(SteamAPI_ISteamUserStats_RequestCurrentStats)
+//	LOAD_FUNC(SteamAPI_ISteamUserStats_StoreStats)
+//	LOAD_FUNC(SteamAPI_ISteamUserStats_GetStat)
+//	LOAD_FUNC(SteamAPI_ISteamUserStats_SetStat)
+//	LOAD_FUNC(SteamAPI_ISteamUserStats_SetAchievement)
+//	#undef LOAD_FUNC
+//
+//	if (!SteamAPI_Init())
+//	{
+//		printf("Steamworks not initialized!\n");
+//		ClearPointers();
+//		return 0;
+//	}
+//	steamClient = SteamInternal_CreateInterface(VVVVVV_STEAMCLIENT);
+//	steamUser = SteamAPI_GetHSteamUser();
+//	steamPipe = SteamAPI_GetHSteamPipe();
+//	if (!steamClient || !steamUser || !steamPipe)
+//	{
+//		SteamAPI_Shutdown();
+//		printf(VVVVVV_STEAMCLIENT " not created!\n");
+//		ClearPointers();
+//		return 0;
+//	}
+//	steamUserStats = SteamAPI_ISteamClient_GetISteamUserStats(
+//		steamClient,
+//		steamUser,
+//		steamPipe,
+//		VVVVVV_STEAMUSERSTATS
+//	);
+//	if (!steamUserStats)
+//	{
+//		SteamAPI_Shutdown();
+//		printf(VVVVVV_STEAMUSERSTATS " not created!\n");
+//		ClearPointers();
+//		return 0;
+//	}
+//	SteamAPI_ISteamUserStats_RequestCurrentStats(steamUserStats);
+//	return 1;
 }
 
 void NETWORK_shutdown()
 {
-	if (libHandle)
-	{
-		SteamAPI_Shutdown();
-		ClearPointers();
-	}
+	printf("Stub NETWORK_shutdown\n");
+//	if (libHandle)
+//	{
+//		SteamAPI_Shutdown();
+//		ClearPointers();
+//	}
 }
 
 void NETWORK_update()
 {
-	if (libHandle)
-	{
-		SteamAPI_RunCallbacks();
-	}
+	printf("Stub NETWORK_update\n");
+//	if (libHandle)
+//	{
+//		SteamAPI_RunCallbacks();
+//	}
 }
 
 void NETWORK_unlockAchievement(const char *name)
 {
-	if (libHandle)
-	{
-		SteamAPI_ISteamUserStats_SetAchievement(
-			steamUserStats,
-			name
-		);
-		SteamAPI_ISteamUserStats_StoreStats(steamUserStats);
-	}
+	printf("Stub NETWORK_unlockAchievement\n");
+//	if (libHandle)
+//	{
+//		SteamAPI_ISteamUserStats_SetAchievement(
+//			steamUserStats,
+//			name
+//		);
+//		SteamAPI_ISteamUserStats_StoreStats(steamUserStats);
+//	}
 }
 
 int32_t NETWORK_getAchievementProgress(const char *name)
 {
-	int32_t result = -1;
-	if (libHandle)
-	{
-		SteamAPI_ISteamUserStats_GetStat(
-			steamUserStats,
-			name,
-			&result
-		);
-	}
-	return result;
+	printf("Stub NETWORK_getAchievementProgress\n");
+	return 0;
+//	int32_t result = -1;
+//	if (libHandle)
+//	{
+//		SteamAPI_ISteamUserStats_GetStat(
+//			steamUserStats,
+//			name,
+//			&result
+//		);
+//	}
+//	return result;
 }
 
 void NETWORK_setAchievementProgress(const char *name, int32_t stat)
 {
-	if (libHandle)
-	{
-		SteamAPI_ISteamUserStats_SetStat(
-			steamUserStats,
-			name,
-			stat
-		);
-		SteamAPI_ISteamUserStats_StoreStats(steamUserStats);
-	}
+	printf("Stub NETWORK_setAchievementProgress\n");
+//	if (libHandle)
+//	{
+//		SteamAPI_ISteamUserStats_SetStat(
+//			steamUserStats,
+//			name,
+//			stat
+//		);
+//		SteamAPI_ISteamUserStats_StoreStats(steamUserStats);
+//	}
 }

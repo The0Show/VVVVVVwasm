@@ -25,6 +25,11 @@
 #define MAX_PATH PATH_MAX
 #endif
 
+#define mkdir(a, b) printf("Mkdir %s (%d)", a, b)
+#define VNEEDS_MIGRATION 0
+
+const int MAX_PATH = 4096;
+
 char saveDir[MAX_PATH];
 char levelDir[MAX_PATH];
 
@@ -70,12 +75,8 @@ void FILESYSTEM_init(char *argvZero)
 	}
 
 	/* Mount the stock content last */
-#ifdef _WIN32
-	strcpy(output, PHYSFS_getBaseDir());
-	strcat(output, "data.zip");
-#else
 	strcpy(output, "data.zip");
-#endif
+
 	if (!PHYSFS_mount(output, NULL, 1))
 	{
 		SDL_ShowSimpleMessageBox(
@@ -171,7 +172,8 @@ void PLATFORM_getOSDirectory(char* output)
 	SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, output);
 	strcat(output, "\\VVVVVV\\");
 #else
-#error See PLATFORM_getOSDirectory
+	//#error See PLATFORM_getOSDirectory
+	strcat(output, "/VVVVVV/");
 #endif
 }
 
@@ -334,7 +336,7 @@ void PLATFORM_migrateSaveData(char* output)
 		}
 	} while (FindNextFile(hFind, &findHandle));
 #else
-#error See PLATFORM_migrateSaveData
+//#error See PLATFORM_migrateSaveData
 #endif
 }
 

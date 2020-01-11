@@ -212,59 +212,59 @@ musicclass::musicclass()
 
 void musicclass::play(int t)
 {
-  t = (t % 16);
-
-	if(mmmmmm)
-	{
-		if(!usingmmmmmm)
-		{
-			t += 16;
-		}
-	}
-	safeToProcessMusic = true;
-	Mix_VolumeMusic(128);
-	if (currentsong !=t)
-	{
-		if (currentsong != -1)
-		{
-			// Stop the old song first
-			// musicchannel.stop();
-			if (currentsong != 0)
-			{
-				// musicchannel.removeEventListener(Event.SOUND_COMPLETE, loopmusic);
-			}
-		}
-		if (t != -1)
-		{
-			// musicfade = 0;
-			currentsong = t;
-			if (currentsong == 0 || currentsong == 7)
-			{
-				// Level Complete theme, no fade in or repeat
-				// musicchannel = musicchan[currentsong].play(0);
-				// musicchannel.soundTransform = new SoundTransform(1.0);
-				if(Mix_FadeInMusic(musicTracks[t].m_music, 0, 0)==-1)
-				{
-					printf("Mix_PlayMusic: %s\n", Mix_GetError());
-				}
-			}
-			else
-			{
-				// musicfadein = 90;
-				// musicchannel = musicchan[currentsong].play(0);
-				// musicchannel.soundTransform = new SoundTransform(0);
-				// musicchannel.addEventListener(Event.SOUND_COMPLETE, loopmusic);
-				if(Mix_FadeInMusic(musicTracks[t].m_music, -1, 3000)==-1)
-				{
-					printf("Mix_FadeInMusic: %s\n", Mix_GetError());
-				}
-			}
-		}
-		else
-		{
-			currentsong = -1;
-		}
-	}
+//  t = (t % 16);
+//
+//	if(mmmmmm)
+//	{
+//		if(!usingmmmmmm)
+//		{
+//			t += 16;
+//		}
+//	}
+//	safeToProcessMusic = true;
+//	Mix_VolumeMusic(128);
+//	if (currentsong !=t)
+//	{
+//		if (currentsong != -1)
+//		{
+//			// Stop the old song first
+//			// musicchannel.stop();
+//			if (currentsong != 0)
+//			{
+//				// musicchannel.removeEventListener(Event.SOUND_COMPLETE, loopmusic);
+//			}
+//		}
+//		if (t != -1)
+//		{
+//			// musicfade = 0;
+//			currentsong = t;
+//			if (currentsong == 0 || currentsong == 7)
+//			{
+//				// Level Complete theme, no fade in or repeat
+//				// musicchannel = musicchan[currentsong].play(0);
+//				// musicchannel.soundTransform = new SoundTransform(1.0);
+//				if(Mix_FadeInMusic(musicTracks[t].m_music, 0, 0)==-1)
+//				{
+//					printf("Mix_PlayMusic: %s\n", Mix_GetError());
+//				}
+//			}
+//			else
+//			{
+//				// musicfadein = 90;
+//				// musicchannel = musicchan[currentsong].play(0);
+//				// musicchannel.soundTransform = new SoundTransform(0);
+//				// musicchannel.addEventListener(Event.SOUND_COMPLETE, loopmusic);
+//				if(Mix_FadeInMusic(musicTracks[t].m_music, -1, 3000)==-1)
+//				{
+//					printf("Mix_FadeInMusic: %s\n", Mix_GetError());
+//				}
+//			}
+//		}
+//		else
+//		{
+//			currentsong = -1;
+//		}
+//	}
 }
 
 void musicclass::loopmusic()
@@ -278,28 +278,28 @@ void musicclass::loopmusic()
 
 void musicclass::stopmusic()
 {
-	// musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
-	// musicchannel.stop();
-	Mix_HaltMusic();
-	currentsong = -1;
+//	// musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
+//	// musicchannel.stop();
+//	Mix_HaltMusic();
+//	currentsong = -1;
 }
 
 void musicclass::haltdasmusik()
 {
-	// musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
-	// musicchannel.stop();
-	// resumesong = currentsong;
-	Mix_HaltMusic();
-	currentsong = -1;
+//	// musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
+//	// musicchannel.stop();
+//	// resumesong = currentsong;
+//	Mix_HaltMusic();
+//	currentsong = -1;
 }
 
 void musicclass::silencedasmusik()
 {
-	//if(currentsong>-1){
-	//	musicchannel.soundTransform = new SoundTransform(0);
-	//}
-	Mix_VolumeMusic(0) ;
-	musicVolume = 0;
+//	//if(currentsong>-1){
+//	//	musicchannel.soundTransform = new SoundTransform(0);
+//	//}
+//	Mix_VolumeMusic(0) ;
+//	musicVolume = 0;
 }
 
 void musicclass::fadeMusicVolumeIn(int ms)
@@ -310,15 +310,15 @@ void musicclass::fadeMusicVolumeIn(int ms)
 
 void musicclass::fadeout()
 {
-	//if(currentsong>-1){
-	//	if (musicfade == 0) {
-	//		musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
-	//		musicfade = 61;
-	//	}
-	//}
-
-	Mix_FadeOutMusic(2000);
-	currentsong = -1;
+//	//if(currentsong>-1){
+//	//	if (musicfade == 0) {
+//	//		musicchannel.removeEventListener(Event.SOUND_COMPLETE, stopmusic);
+//	//		musicfade = 61;
+//	//	}
+//	//}
+//
+//	Mix_FadeOutMusic(2000);
+//	currentsong = -1;
 }
 
 void musicclass::processmusicfade()
@@ -334,68 +334,68 @@ void musicclass::processmusicfade()
 
 void musicclass::processmusicfadein()
 {
-	musicVolume += FadeVolAmountPerFrame;
-	Mix_VolumeMusic(musicVolume);
-	if (musicVolume >= MIX_MAX_VOLUME)
-	{
-		m_doFadeInVol = false;
-	}
+//	musicVolume += FadeVolAmountPerFrame;
+//	Mix_VolumeMusic(musicVolume);
+//	if (musicVolume >= MIX_MAX_VOLUME)
+//	{
+//		m_doFadeInVol = false;
+//	}
 }
 
 void musicclass::processmusic()
 {
-	if(!safeToProcessMusic)
-	{
-		return;
-	}
-
-	//if (musicfade > 0) processmusicfade();
-	//if (musicfadein > 0) processmusicfadein();
-
-	if (nicefade == 1 && Mix_PlayingMusic() == 0)
-	{
-		play(nicechange);
-		nicechange = -1; nicefade = 0;
-	}
-
-	if(m_doFadeInVol)
-	{
-		processmusicfadein();
-	}
-
-	//musicstopother--;
-	//if (musicstopother == 1) {
-	//	musicstopother = 0;
-	//	if (currentmusicchan == 0) musicchannel2.stop();
-	//	if (currentmusicchan == 1) musicchannel.stop();
-	//}
-	//if (musicstopother < 0) musicstopother = 0;
-
-	//musicchancur--;
-	//if (musicchancur <= 0 && currentsong > -1 && musicchanlen > 0) {
-	//	musicchancur = musicchanlen;
-	//	if (currentmusicchan == 0) {
-	//		musicchannel2 = musicchan[currentsong].play();
-	//		musicstopother = 3;
-	//		currentmusicchan = 1;
-	//	}else {
-	//		musicchannel = musicchan[currentsong].play();
-	//		musicstopother = 3;
-	//		currentmusicchan = 0;
-	//	}
-	//}
+//	if(!safeToProcessMusic)
+//	{
+//		return;
+//	}
+//
+//	//if (musicfade > 0) processmusicfade();
+//	//if (musicfadein > 0) processmusicfadein();
+//
+//	if (nicefade == 1 && Mix_PlayingMusic() == 0)
+//	{
+//		play(nicechange);
+//		nicechange = -1; nicefade = 0;
+//	}
+//
+//	if(m_doFadeInVol)
+//	{
+//		processmusicfadein();
+//	}
+//
+//	//musicstopother--;
+//	//if (musicstopother == 1) {
+//	//	musicstopother = 0;
+//	//	if (currentmusicchan == 0) musicchannel2.stop();
+//	//	if (currentmusicchan == 1) musicchannel.stop();
+//	//}
+//	//if (musicstopother < 0) musicstopother = 0;
+//
+//	//musicchancur--;
+//	//if (musicchancur <= 0 && currentsong > -1 && musicchanlen > 0) {
+//	//	musicchancur = musicchanlen;
+//	//	if (currentmusicchan == 0) {
+//	//		musicchannel2 = musicchan[currentsong].play();
+//	//		musicstopother = 3;
+//	//		currentmusicchan = 1;
+//	//	}else {
+//	//		musicchannel = musicchan[currentsong].play();
+//	//		musicstopother = 3;
+//	//		currentmusicchan = 0;
+//	//	}
+//	//}
 }
 
 
 void musicclass::niceplay(int t)
 {
-	// important: do nothing if the correct song is playing!
-	if(currentsong!=t)
-	{
-		if(currentsong!=-1) fadeout();
-		nicefade = 1;
-		nicechange = t;
-	}
+//	// important: do nothing if the correct song is playing!
+//	if(currentsong!=t)
+//	{
+//		if(currentsong!=-1) fadeout();
+//		nicefade = 1;
+//		nicechange = t;
+//	}
 }
 
 void musicclass::changemusicarea(int x, int y)
@@ -441,14 +441,14 @@ void musicclass::initefchannels()
 
 void musicclass::playef(int t, int offset)
 {
-	// efchannel[currentefchan] = efchan[t].play(offset);
-	// currentefchan++;
-	// if (currentefchan > 15) currentefchan -= 16;
-	int channel;
-
-	channel = Mix_PlayChannel(-1, soundTracks[t].sound, 0);
-	if(channel == -1)
-	{
-		fprintf(stderr, "Unable to play WAV file: %s\n", Mix_GetError());
-	}
+//	// efchannel[currentefchan] = efchan[t].play(offset);
+//	// currentefchan++;
+//	// if (currentefchan > 15) currentefchan -= 16;
+//	int channel;
+//
+//	channel = Mix_PlayChannel(-1, soundTracks[t].sound, 0);
+//	if(channel == -1)
+//	{
+//		fprintf(stderr, "Unable to play WAV file: %s\n", Mix_GetError());
+//	}
 }

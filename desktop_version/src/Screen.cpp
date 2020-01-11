@@ -33,7 +33,7 @@ Screen::Screen()
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
 	// Uncomment this next line when you need to debug -flibit
-	// SDL_SetHintWithPriority(SDL_HINT_RENDER_DRIVER, "software", SDL_HINT_OVERRIDE);
+	 SDL_SetHintWithPriority(SDL_HINT_RENDER_DRIVER, "software", SDL_HINT_OVERRIDE);
 	SDL_CreateWindowAndRenderer(
 		640,
 		480,
@@ -43,27 +43,27 @@ Screen::Screen()
 	);
 	SDL_SetWindowTitle(m_window, "VVVVVV");
 
-	unsigned char *fileIn = NULL;
-	size_t length = 0;
-	unsigned char *data;
-	unsigned int width, height;
-	FILESYSTEM_loadFileToMemory("VVVVVV.png", &fileIn, &length);
-	lodepng_decode24(&data, &width, &height, fileIn, length);
-	FILESYSTEM_freeMemory(&fileIn);
-	SDL_Surface *icon = SDL_CreateRGBSurfaceFrom(
-		data,
-		width,
-		height,
-		24,
-		width * 3,
-		0x000000FF,
-		0x0000FF00,
-		0x00FF0000,
-		0x00000000
-	);
-	SDL_SetWindowIcon(m_window, icon);
-	SDL_FreeSurface(icon);
-	free(data);
+//	unsigned char *fileIn = NULL;
+//	size_t length = 0;
+//	unsigned char *data;
+//	unsigned int width, height;
+//	FILESYSTEM_loadFileToMemory("VVVVVV.png", &fileIn, &length);
+//	lodepng_decode24(&data, &width, &height, fileIn, length);
+//	FILESYSTEM_freeMemory(&fileIn);
+//	SDL_Surface *icon = SDL_CreateRGBSurfaceFrom(
+//		data,
+//		width,
+//		height,
+//		24,
+//		width * 3,
+//		0x000000FF,
+//		0x0000FF00,
+//		0x00FF0000,
+//		0x00000000
+//	);
+//	SDL_SetWindowIcon(m_window, icon);
+//	SDL_FreeSurface(icon);
+//	free(data);
 
 	// FIXME: This surface should be the actual backbuffer! -flibit
 	m_screen = SDL_CreateRGBSurface(

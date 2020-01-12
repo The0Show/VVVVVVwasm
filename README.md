@@ -11,8 +11,7 @@ VVVVVVwasm depends on latest Emscripten. Build using `make`.
 You'll need the data.zip file from VVVVVV to actually run the game! It's
 available to download seperately for free in the
 [Make and Play](http://distractionware.com/blog/category/vvvvvv-make-and-play/)
-edition of the game. Put this file next to your executable and the game should
-run.
+edition of the game. Put this into `./data/` directory to compile the game.
 
 This is intended for personal use only - our license doesn't allow you to
 actually distribute this data.zip file with your own forks without getting

@@ -78,14 +78,12 @@ CFLAGS_VVVVVV=\
 
 # Linker flags
 LDFLAGS_VVVVVV=\
-	-s TOTAL_MEMORY=512MB \
+	-s TOTAL_MEMORY=300MB \
 	--preload-file ./data@/ \
 	-s USE_SDL=2 \
 	-s USE_SDL_MIXER=2 \
 	-s EMULATE_FUNCTION_POINTER_CASTS=1 \
-	-s STACK_OVERFLOW_CHECK=2 \
-	-s TOTAL_STACK=256MB \
-	-s MAX_WEBGL_VERSION=2 \
+	-s TOTAL_STACK=128MB \
 	-s USE_OGG=1 \
 	-s USE_VORBIS=1
 
@@ -130,18 +128,18 @@ OBJECTS_VVVVVV=$(SOURCES_VVVVVV:%=$(BUILD_DIR)/%.bc)
 index.html: $(OBJECTS_VVVVVV) $(OBJECTS_PHYSFS) $(OBJECTS_TINYXML) $(OBJECTS_LODEPNG)
 	$(CPP) $(CFLAGS) $(LDFLAGS_VVVVVV) $(OBJECTS_VVVVVV) $(OBJECTS_PHYSFS) $(OBJECTS_TINYXML) $(OBJECTS_LODEPNG) -o $(BUILD_DIR)/index.html --shell-file ./shell.html
 
-$(OBJECTS_PHYSFS): build/%.bc: %
+$(OBJECTS_PHYSFS): $(BUILD_DIR)/%.bc: %
 	mkdir -p build/physfs/
 	$(CC) $(CFLAGS) $(CFLAGS_PHYSFS) -c $< -o $@
 
-$(OBJECTS_TINYXML): build/%.bc: %
+$(OBJECTS_TINYXML): $(BUILD_DIR)/%.bc: %
 	mkdir -p build/tinyxml/
 	$(CPP) $(CFLAGS) $(CFLAGS_TINYXML) -c $< -o $@
 
-$(OBJECTS_LODEPNG): build/%.bc: %
+$(OBJECTS_LODEPNG): $(BUILD_DIR)/%.bc: %
 	mkdir -p build/lodepng/
 	$(CC) $(CFLAGS) $(CFLAGS_LODEPNG) -c $< -o $@
 
-$(OBJECTS_VVVVVV): build/%.bc: %
+$(OBJECTS_VVVVVV): $(BUILD_DIR)/%.bc: %
 	mkdir -p build/src/
 	$(CPP) $(CFLAGS) $(CFLAGS_VVVVVV) -c $< -o $@

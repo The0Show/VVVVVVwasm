@@ -146,19 +146,6 @@ void musicclass::play(int t)
 		const index = $0;
 		console.log("Play music track", index);
 
-//        const mem = window.musicTracks[index][0];
-//        const size = window.musicTracks[index][1];
-//        const data = HEAP32.buffer.slice(mem, mem + size);
-
-//        window.musicTracksAudioContext.decodeAudioData(data).then(buffer => {
-//            if(window.musicTracksSource) window.musicTracksSource.stop();
-//            window.musicTracksSource = window.musicTracksAudioContext.createBufferSource();
-//    		window.musicTracksSource.buffer = buffer;
-//	    	window.musicTracksSource.loop = true;
-//            window.musicTracksSource.connect(window.musicTracksAudioContext.destination);
-//    		window.musicTracksSource.start(0);
-//        });
-
         const buffer = window.musicTracks[index];
         if(window.musicTracksSource) window.musicTracksSource.stop();
         window.musicTracksSource = window.musicTracksAudioContext.createBufferSource();

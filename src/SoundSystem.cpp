@@ -1,28 +1,24 @@
 #include <SDL.h>
+#include <emscripten/em_asm.h>
 #include "SoundSystem.h"
 #include "FileSystemUtils.h"
 
-MusicTrack::MusicTrack(const char* fileName)
+MusicTrack::MusicTrack(void *mem, int size)
 {
-	m_music = Mix_LoadMUS(fileName);
-	m_isValid = true;
-	if(m_music == NULL)
-	{
-		fprintf(stderr, "Unable to load Ogg Music file: %s\n", Mix_GetError());;
-		m_isValid = false;
-	}
-}
+    m_isValid = true;
 
-MusicTrack::MusicTrack(SDL_RWops *rw)
-{
-	// wasm TODO
-//    m_music = Mix_LoadMUS_RW(rw, 0);
-//	m_isValid = true;
-//	if(m_music == NULL)
-//	{
-//		fprintf(stderr, "Unable to load Magic Binary Music file: %s\n", Mix_GetError());
-//		m_isValid = false;
-//	}
+	EM_ASM({
+        const mem = $0;
+		const size = $1;
+
+		console.log("Load music track", mem, size);
+
+        const data = HEAP32.buffer.slice(mem, mem + size);
+
+        window.musicTracksAudioContext.decodeAudioData(data).then(buffer => {
+            window.musicTracks.push(buffer);
+        });
+	}, mem, size);
 }
 
 SoundTrack::SoundTrack(const char* fileName)
@@ -62,8 +58,9 @@ void SoundSystem::playMusic(MusicTrack* music)
 	{
 		fprintf(stderr, "Invalid mix specified: %s\n", Mix_GetError());
 	}
-	if(Mix_PlayMusic(music->m_music, 0) == -1)
-	{
-		fprintf(stderr, "Unable to play Ogg file: %s\n", Mix_GetError());
-	}
+
+//	if(Mix_PlayMusic(music->m_music, 0) == -1)
+//	{
+//		fprintf(stderr, "Unable to play Ogg file: %s\n", Mix_GetError());
+//	}
 }

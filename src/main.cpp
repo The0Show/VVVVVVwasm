@@ -367,7 +367,7 @@ gameScreen.ClearScreen(0xfff);
             graphics.bprint(5, 230, "Press M to mute in game", 164 - help.glow, 196 - help.glow, 164 - help.glow, true);
             graphics.render();
             //We are minimised, so lets put a bit of a delay to save CPU
-            SDL_Delay(100);
+//            SDL_Delay(100);
         } else {
             switch (game.gamestate) {
                 case PRELOADER:

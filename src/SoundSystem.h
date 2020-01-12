@@ -6,9 +6,7 @@
 class MusicTrack
 {
 public:
-	MusicTrack(const char* fileName);
-	MusicTrack(SDL_RWops *rw);
-	Mix_Music *m_music;
+	MusicTrack(void *mem, int size);
 	bool m_isValid;
 };
 

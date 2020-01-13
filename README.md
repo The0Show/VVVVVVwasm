@@ -1,6 +1,6 @@
 # VVVVVVwasm
 
-WASM version of VVVVVV, built with Emscripten.
+WASM version of VVVVVV Make&Play edition, built with Emscripten.
 
 ## How to Build
 

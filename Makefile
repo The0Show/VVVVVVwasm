@@ -4,8 +4,8 @@
 BUILD_DIR=./build
 
 # Compilers
-CC=emcc
-CPP=em++
+CC=/mnt/c/projects/emsdk_linux/upstream/emscripten/emcc
+CPP=/mnt/c/projects/emsdk_linux/upstream/emscripten/em++
 
 # Default compiler flags
 CFLAGS=-g0 -O3
@@ -74,7 +74,8 @@ CFLAGS_VVVVVV=\
 	-s USE_SDL_MIXER=2 \
 	-s EMULATE_FUNCTION_POINTER_CASTS=1 \
 	-DPHYSFS_SUPPORTS_DEFAULT=0 \
-	-DPHYSFS_SUPPORTS_ZIP=1
+	-DPHYSFS_SUPPORTS_ZIP=1 \
+	-DMAKEANDPLAY
 
 # Linker flags
 LDFLAGS_VVVVVV=\

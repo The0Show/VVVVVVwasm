@@ -15,6 +15,7 @@ std::vector<std::string> finalclass::loadlevel(int rx, int ry, Game& game, entit
 
 	switch(t)
 	{
+#if !defined(MAKEANDPLAY)
 	case rn(50,52):
 
 		tmap.push_back("98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,220,0,0,0,0,0,0,0,218,98,98,98");
@@ -2311,6 +2312,7 @@ std::vector<std::string> finalclass::loadlevel(int rx, int ry, Game& game, entit
 		//game.test = true;
 		//game.teststring = "ERROR: Map not found in Final Area";
 		break;
+#endif
 	}
 
 	return tmap;

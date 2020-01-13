@@ -1,3 +1,5 @@
+#include <emscripten.h>
+
 #include "Enums.h"
 
 #include "Game.h"
@@ -4271,11 +4273,17 @@ void Game::loadstats( mapclass& map, Graphics& dwgfx )
 
 	if (pKey == "window_width")
 	{
-		width = atoi(pText);
+//		width = atoi(pText);
+		width = EM_ASM_INT({
+		    return window.innerWidth;
+		});
 	}
 	if (pKey == "window_height")
 	{
-		height = atoi(pText);
+//		height = atoi(pText);
+        height = EM_ASM_INT({
+            return window.innerHeight;
+        });
 	}
 
 

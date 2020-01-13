@@ -78,7 +78,7 @@ CFLAGS_VVVVVV=\
 
 # Linker flags
 LDFLAGS_VVVVVV=\
-	-s TOTAL_MEMORY=300MB \
+	-s TOTAL_MEMORY=512MB \
 	--preload-file ./data@/ \
 	-s USE_SDL=2 \
 	-s USE_SDL_MIXER=2 \

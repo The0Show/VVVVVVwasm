@@ -57,7 +57,7 @@ public:
 	bool custompd;
 
 	// MMMMMM mod settings
-	bool mmmmmm;
+	bool mmmmmm = false;
 	bool usingmmmmmm;
 };
 

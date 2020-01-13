@@ -4,8 +4,8 @@
 BUILD_DIR=./build
 
 # Compilers
-CC=/mnt/c/projects/emsdk_linux/upstream/emscripten/emcc
-CPP=/mnt/c/projects/emsdk_linux/upstream/emscripten/em++
+CC=emcc
+CPP=em++
 
 # Default compiler flags
 CFLAGS=-g0 -O3

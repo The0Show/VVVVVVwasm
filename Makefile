@@ -81,6 +81,7 @@ CFLAGS_VVVVVV=\
 LDFLAGS_VVVVVV=\
 	-s TOTAL_MEMORY=512MB \
 	--preload-file ./data@/ \
+	--use-preload-cache \
 	-s USE_SDL=2 \
 	-s USE_SDL_MIXER=2 \
 	-s EMULATE_FUNCTION_POINTER_CASTS=1 \

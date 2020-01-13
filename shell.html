@@ -7,12 +7,6 @@
     <style>
         body {
             background: black;
-            color: white;
-            font-family: sans-serif;
-            font-size: 1.2em;
-        }
-        a {
-            color: #a0a0a0;
         }
         .emscripten {
             display: flex;
@@ -26,12 +20,11 @@
 </head>
 <body>
 <div class="emscripten">
-    <progress value="0" max="100" id="progress" hidden=1></progress>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    <progress value="50" max="100" id="progress" ></progress>
 </div>
 
 <div class="emscripten">
-    <a href="//github.com/kotborealis/VVVVVVwasm">VVVVVVwasm</a>: VVVVVV port by <a href="//github.com/kotboreslis">@kotborealis</a>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
 </div>
 
 <script type='text/javascript'>

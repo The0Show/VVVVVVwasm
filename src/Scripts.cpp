@@ -310,6 +310,7 @@ void scriptclass::load(std::string t)
         }
       }
     }
+#ifndef MAKEANDPLAY
     else if (t == "intro")
     {
         add("ifskip(quickstart)");
@@ -6571,6 +6572,7 @@ void scriptclass::load(std::string t)
         add("endcutscene()");
         add("untilbars()");
     }
+#endif
     else
     {
         loadother(t);

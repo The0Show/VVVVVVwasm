@@ -8,7 +8,6 @@ musicclass::musicclass()
 {
     EM_ASM({
         window.musicTracks = [];
-        window.musicTracksAudioContext = new AudioContext;
         window.musicTracksSource = null;
     });
 
@@ -148,10 +147,10 @@ void musicclass::play(int t)
 
         const buffer = window.musicTracks[index];
         if(window.musicTracksSource) window.musicTracksSource.stop();
-        window.musicTracksSource = window.musicTracksAudioContext.createBufferSource();
+        window.musicTracksSource = Module.SDL2.audioContext.createBufferSource();
         window.musicTracksSource.buffer = buffer;
         window.musicTracksSource.loop = true;
-        window.musicTracksSource.connect(window.musicTracksAudioContext.destination);
+        window.musicTracksSource.connect(Module.SDL2.audioContext.destination);
         window.musicTracksSource.start(0);
 	}, t);
 

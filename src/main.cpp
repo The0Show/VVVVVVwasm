@@ -275,7 +275,7 @@ int main(int argc, char *argv[]) {
     argc_ = argc;
     argv_ = argv;
     emscripten_cancel_main_loop();
-    emscripten_set_main_loop(main_loop, -1, 0);
+    emscripten_set_main_loop(main_loop, 30, 0);
     return 0;
 }
 
@@ -298,12 +298,20 @@ void main_loop() {
 gameScreen.ClearScreen(0xfff);
 
         time = SDL_GetTicks();
+        Uint32 timetaken = time - timePrev;
+
+//        if(timetaken < game.gameframerate){
+//            return;
+//        }
+//        else{
+//            timePrev = time;
+//        }
 
 // Update network per frame.
 //        NETWORK_update();
 
 //framerate limit to 30
-        Uint32 timetaken = time - timePrev;
+//        Uint32 timetaken = time - timePrev;
 //        if (game.gamestate == EDITORMODE) {
 //            if (timetaken < 24) {
 //                volatile Uint32 delay = 24 - timetaken;

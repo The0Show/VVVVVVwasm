@@ -46,8 +46,6 @@ struct context_t {
                 SDL_INIT_GAMECONTROLLER
         );
 
-        SDL_ShowCursor(SDL_DISABLE);
-
         if (argc > 2 && strcmp(argv[1], "-renderer") == 0) {
             SDL_SetHintWithPriority(SDL_HINT_RENDER_DRIVER, argv[2], SDL_HINT_OVERRIDE);
         }

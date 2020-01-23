@@ -298,6 +298,8 @@ gameScreen.ClearScreen(0xfff);
         time = SDL_GetTicks();
         Uint32 timetaken = time - timePrev;
 
+        emscripten_set_main_loop_timing(EM_TIMING_SETTIMEOUT, game.gameframerate);
+
 //        if(timetaken < game.gameframerate){
 //            return;
 //        }

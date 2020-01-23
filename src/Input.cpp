@@ -189,13 +189,13 @@ void titleinput(KeyPoll& key, Graphics& dwgfx, mapclass& map, Game& game, entity
         }
         */
 
-        if (key.isDown(27) && game.currentmenuname != "youwannaquit" && game.menustart)
-        {
-            music.playef(11, 10);
-            game.previousmenuname = game.currentmenuname;
-            game.createmenu("youwannaquit");
-            map.nexttowercolour();
-        }
+//        if (key.isDown(27) && game.currentmenuname != "youwannaquit" && game.menustart)
+//        {
+//            music.playef(11, 10);
+//            game.previousmenuname = game.currentmenuname;
+//            game.createmenu("youwannaquit");
+//            map.nexttowercolour();
+//        }
 
         if(game.menustart)
         {

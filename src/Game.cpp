@@ -6640,9 +6640,7 @@ void Game::createmenu( std::string t )
 					menuoptionsactive[1] = true;
 					menuoptions[2] = "game options";
 					menuoptionsactive[2] = true;
-					menuoptions[3] = "quit game";
-					menuoptionsactive[3] = true;
-					nummenuoptions = 4;
+					nummenuoptions = 3;
 					menuxoff = -16;
 					menuyoff = -10;
 				#elif !defined(MAKEANDPLAY)

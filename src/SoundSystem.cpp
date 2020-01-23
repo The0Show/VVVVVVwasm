@@ -15,9 +15,10 @@ MusicTrack::MusicTrack(void *mem, int size)
 
         const data = HEAP32.buffer.slice(mem, mem + size);
 
-		Module.SDL2.audioContext.decodeAudioData(data).then(buffer => {
-            window.musicTracks.push(buffer);
-        });
+        window.musicTracks.push({mem, size});
+//		Module.SDL2.audioContext.decodeAudioData(data).then(buffer => {
+//            window.musicTracks.push(buffer);
+//        });
 	}, mem, size);
 }
 

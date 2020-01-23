@@ -143,15 +143,22 @@ void musicclass::play(int t)
 
 	EM_ASM({
 		const index = $0;
-		console.log("Play music track", index);
 
-        const buffer = window.musicTracks[index];
-        if(window.musicTracksSource) window.musicTracksSource.stop();
-        window.musicTracksSource = Module.SDL2.audioContext.createBufferSource();
-        window.musicTracksSource.buffer = buffer;
-        window.musicTracksSource.loop = true;
-        window.musicTracksSource.connect(Module.SDL2.audioContext.destination);
-        window.musicTracksSource.start(0);
+		if(window.musicTracksSource) window.musicTracksSource.stop();
+
+		const _ = window.musicTracks[index];
+		const mem = _.mem;
+		const size = _.size;
+		const data = HEAP32.buffer.slice(mem, mem + size);
+
+   		Module.SDL2.audioContext.decodeAudioData(data).then(buffer => {
+            window.musicTracks.push(buffer);
+			window.musicTracksSource = Module.SDL2.audioContext.createBufferSource();
+			window.musicTracksSource.buffer = buffer;
+			window.musicTracksSource.loop = true;
+			window.musicTracksSource.connect(Module.SDL2.audioContext.destination);
+			window.musicTracksSource.start(0);
+        });
 	}, t);
 
 //	Mix_VolumeMusic(128);
